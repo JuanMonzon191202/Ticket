@@ -7,7 +7,7 @@ export const Ticket = sequelize.define("ticket", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncremental: true,
+    autoIncrement: true,
   },
   descripcion: {
     type: DataTypes.STRING,
@@ -17,24 +17,38 @@ export const Ticket = sequelize.define("ticket", {
     type: DataTypes.ENUM("Abierto", "En proceso", "Cerrado"),
     defaultValue: "Abierto",
   },
+  idUsuario: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Usuario,
+      key: "id",
+    },
+  },
+  idDispositivo: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Dispositivo,
+      key: "id",
+    },
+  },
 });
 
-Ticket.hasMany(Usuario, {
-  foreingKey: "idTicket",
+Ticket.belongsTo(Usuario, {
+  foreignKey: "idUsuario",
+  targetKey: "id",
+});
+
+Usuario.hasMany(Ticket, {
+  foreignKey: "idUsuario",
   sourceKey: "id",
 });
 
-Usuario.belongsTo(Ticket, {
-  foreingKey: "idTicket",
-  targetId: "id",
+Ticket.belongsTo(Dispositivo, {
+  foreignKey: "idDispositivo",
+  targetKey: "id",
 });
 
-Ticket.hasMany(Dispositivo, {
-  foreingKey: "idDispositivo",
+Dispositivo.hasMany(Ticket, {
+  foreignKey: "idDispositivo",
   sourceKey: "id",
-});
-
-Dispositivo.belongsTo(Ticket, {
-  foreingKey: "idTicket",
-  targetId: "id",
 });

@@ -1,9 +1,15 @@
 import { Router } from "express";
+
+import {
+  getUsuarios,
+  createUsuario,
+} from "../controllers/usuariiosController.js";
+
 const router = Router();
 
-router.get("/usuarios");
+router.get("/usuarios", getUsuarios);
 
-router.post("/usuarios");
+router.post("/usuarios", createUsuario);
 
 router.put("/usuarios/:id");
 
