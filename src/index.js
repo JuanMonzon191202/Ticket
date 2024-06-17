@@ -1,10 +1,16 @@
 import app from "./app.js";
+import "dotenv/config";
 import { sequelize } from "./database/database.js";
 
 async function main() {
-  await sequelize.sync({ force: false });
-  app.listen(4000);
-  console.log("Server on port 4000");
+  try {
+    await sequelize.sync({ force: false });
+    app.listen(4000, () => {
+      console.log("Server on port 4000");
+    });
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
 }
 
 main();

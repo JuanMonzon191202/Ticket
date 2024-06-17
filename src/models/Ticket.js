@@ -14,7 +14,7 @@ export const Ticket = sequelize.define("ticket", {
     allowNull: false,
   },
   status: {
-    type: DataTypes.ENUM("Abierto", "En proceso", "Cerrado"),
+    type: DataTypes.ENUM("Abierto", "En proceso", "Cerrado", "Finalizado"),
     defaultValue: "Abierto",
   },
   idUsuario: {

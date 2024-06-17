@@ -1,17 +1,17 @@
 import { Router } from "express";
 
-import { getRol, createRol } from "../controllers/rolController.js";
+import { getRol, createRol, updateRol } from "../controllers/rolController.js";
 
 const router = Router();
 
 router.get("/roles", getRol);
 
-router.post("/roles", createRol);
+router.post("/new_role", createRol);
 
-router.put("/roles/:id");
+router.put("/edit_roles/:id", updateRol);
 
-router.delete("/roles/:id");
+router.delete("/delete_roles/:id");
 
-router.get("/roles/:id");
+router.get("/role/:id");
 
 export default router;

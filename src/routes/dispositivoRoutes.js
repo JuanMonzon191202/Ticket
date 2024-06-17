@@ -3,17 +3,18 @@ import { Router } from "express";
 import {
   getDispositivo,
   createDispositivo,
+  updateDispositivo,
 } from "../controllers/dispositivoController.js";
 
 const router = Router();
 
-router.get("/dispositivo", getDispositivo);
+router.get("/dispositivos", getDispositivo);
 
-router.post("/dispositivo", createDispositivo);
+router.post("/new_dispositivo", createDispositivo);
 
-router.put("/dispositivo/:id");
+router.put("/edit_dispositivo/:id", updateDispositivo);
 
-router.delete("/dispositivo/:id");
+router.delete("/delete_dispositivo/:id");
 
 router.get("/dispositivo/:id");
 
